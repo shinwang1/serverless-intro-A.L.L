@@ -1,5 +1,7 @@
 # Creative Coding using C++ and Cinder  
 
+### [Link to the google slides](https://docs.google.com/presentation/d/1Nbfff_wT78Y0hd0pRPQcZ3ELTr2mQeTN_QCKjN54ebE/pub?start=false&loop=false&delayms=3000)
+
 ## Part-1
 To compile the main.cpp file, in your terminal type:
     
