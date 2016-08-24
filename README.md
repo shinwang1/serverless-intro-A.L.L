@@ -1,4 +1,4 @@
-# C-plus-plus-Cinder-A.L.L
+# Creative Coding using C++ and Cinder  
 
 ## Part-1
 To compile the main.cpp file, in your terminal type:
@@ -24,7 +24,11 @@ You can also open in the terminal by typing:
 You can then write your code in the main.cpp file just like normal and use Xcode to build and run.
 
 ## Cinder Basic
-pending...............
+This project was created using TinderBox which is an application provided by Cinder.  
+(You may or may not need Cinder installed and built on your system to run this)
+
+There are 5 parts that are commented out and separated by lines.  
+Each part renders something different. Feel free to mess with the code to see what you can do.
 
 
 
