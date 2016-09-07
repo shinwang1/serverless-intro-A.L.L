@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>serverless thang</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
+    <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+    <script type="text/babel">
+      $(document).ready( () => {
+        $("#catName").submit( (event) => {
+          event.preventDefault();
+          console.log(event.target.name.value);
+        });
+
+        const names = {thing1:'toodles', thing2:'boogy'}
+
+        class Classy extends React.Component {
+          
+          render () {
+            return (
+              <div>
+                {(Object.keys(this.props.names)).map( (key, i) => {
+                  return (
+                    <div key={i}>
+                      {key}: {this.props.names[key]}
+                    </div>
+                  )
+                })}
+              </div>
+            )
+          }
+        }
+
+        ReactDOM.render(<Classy names={names} />, document.getElementById('app'));
+
+        // $('#app').append("yayaayaya<br>nnonononononon");
+      });
+    </script>
+  </head>
+  <body>
+    <form  id="catName">
+      Please provide a cat name:<input type="text" name="name">
+      <input type="submit">
+    </form>
+    <h3>Cat Names:</h3>
+    <div id='app'></div>
+  </body>
+</html>
