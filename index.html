@@ -4,47 +4,96 @@
     <meta charset="utf-8">
     <title>serverless thang</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://npmcdn.com/react@15.3.1/dist/react.js"></script>
-    <script src="https://npmcdn.com/react-dom@15.3.1/dist/react-dom.js"></script>
     <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
     <script type="text/babel">
+
+      let catCount = 0;
+
+      const addCat = (catName, callBack) => {
+        fetch('https://po4m3psh3d.execute-api.us-east-1.amazonaws.com/prod/CatDBManager', {
+          method: "POST",
+          mode: 'cors',
+          body: "{\"operation\":\"create\",\"tableName\":\"CatTable\",\"payload\":{\"Item\":{\"Id\":\"" + (catCount + 1).toString() + "\",\"name\":\"" + catName + "\"}}}"
+        })
+        .then(
+          (response) => {
+            return response.json()
+          }
+        )
+        .then(
+          (data) => {
+            console.log('drop the bass')
+            callBack(data)
+            $( "#cats" ).empty();
+            getCats(catBack)
+          }
+        )
+        .catch(
+          (err) => {
+            console.log("'Tis erroneous, Sire: ", err)
+          }
+        )
+      };
+
+      const getCats = (callBack) => {
+        fetch('https://po4m3psh3d.execute-api.us-east-1.amazonaws.com/prod/CatDBManager', {
+          method: "POST",
+          mode: 'cors',
+          body: "{\"operation\":\"list\",\"tableName\":\"CatTable\",\"payload\":{}}"
+        })
+        .then(
+          (response) => {
+            return response.json()
+          }
+        )
+        .then(
+          (data) => {
+            console.log('drop the bass')
+            callBack(data)
+          }
+        )
+        .catch(
+          (err) => {
+            console.log("'Tis erroneous, Sire: ", err)
+          }
+        )
+      };
+
+      const callback = (data) => {
+        console.log(data)
+      };
+
+      const catBack = (data) => {
+        let cats = data.Items;
+
+        let theCatNames = [];
+        cats.map( (cat, i) => {
+          theCatNames.push(cats[i].name);
+        })
+        theCatNames.forEach( (name) => {
+          catCount += 1;
+          $('#cats').append(name + '<br>');
+        })
+        console.log('catCount: ', catCount);
+      };
+
       $(document).ready( () => {
-        $("#catName").submit( (event) => {
+        $("#newName").submit( (event) => {
           event.preventDefault();
-          console.log(event.target.name.value);
+          addCat(event.target.name.value, callback);
         });
 
-        const names = {thing1:'toodles', thing2:'boogy'}
-
-        class Classy extends React.Component {
-          
-          render () {
-            return (
-              <div>
-                {(Object.keys(this.props.names)).map( (key, i) => {
-                  return (
-                    <div key={i}>
-                      {key}: {this.props.names[key]}
-                    </div>
-                  )
-                })}
-              </div>
-            )
-          }
-        }
-
-        ReactDOM.render(<Classy names={names} />, document.getElementById('app'));
-
-        // $('#app').append("yayaayaya<br>nnonononononon");
+        getCats(catBack);
       });
+      
     </script>
   </head>
   <body>
-    <form  id="catName">
+    <form  id="newName">
       Please provide a cat name:<input type="text" name="name">
       <input type="submit">
     </form>
     <h3>Cat Names:</h3>
-    <div id='app'></div>
+    <div id='cats'></div>
   </body>
 </html>
