@@ -10,7 +10,7 @@ var dynamo = new AWS.DynamoDB.DocumentClient();
  *   - tableName: required for operations that interact with DynamoDB
  *   - payload: a parameter to pass to the operation being performed
  */
-exports.handler = function(event, context, callback) {
+exports.handler = function(event, context, catBack) {
     //console.log('Received event:', JSON.stringify(event, null, 2));
 
     var operation = event.operation;
@@ -21,27 +21,27 @@ exports.handler = function(event, context, callback) {
 
     switch (operation) {
         case 'create':
-            dynamo.put(event.payload, callback);
+            dynamo.put(event.payload, catBack);
             break;
         case 'read':
-            dynamo.get(event.payload, callback);
+            dynamo.get(event.payload, catBack);
             break;
         case 'update':
-            dynamo.update(event.payload, callback);
+            dynamo.update(event.payload, catBack);
             break;
         case 'delete':
-            dynamo.delete(event.payload, callback);
+            dynamo.delete(event.payload, catBack);
             break;
         case 'list':
-            dynamo.scan(event.payload, callback);
+            dynamo.scan(event.payload, catBack);
             break;
         case 'echo':
-            callback(null, "Success");
+            catBack(null, "Success");
             break;
         case 'ping':
-            callback(null, "pong");
+            catBack(null, "pong");
             break;
         default:
-            callback('Unknown operation: ${operation}');
+            catBack('Unknown operation: ${operation}');
     }
 };
