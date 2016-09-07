@@ -18,10 +18,9 @@ When a user enters a cat name into the text input element,
 and clicks the submit button,  
 an HTTP request is made, with a different body,  
 to the same API Gateway,  
-which relays the data to same Lambda function,  
-which uses control flow to know to add a new item to the DynamoDB table,  
-which sends a success code to the Lambda function,  
-which sends a success code to the API Gateway,  
+which relays the data to the same Lambda function,  
+which uses control flow to know to add a new item to the DynamoDB table.  
+Then, the Lambda function sends a success code to the API Gateway,  
 which sends a success code to the client,  
 which triggers the first HTTP request, again!  
 
