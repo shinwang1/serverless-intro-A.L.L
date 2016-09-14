@@ -28,3 +28,5 @@ which triggers the first HTTP request, again!
 - [awesome AWS serverless tutorial](https://github.com/awslabs/aws-lambda-zombie-workshop)
 - [AWS Lambda & DynamoDB tutorial](http://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-https-example.html)
 - [easy mode?](https://claudiajs.com/)
+
+No copyright required
