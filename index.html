@@ -22,10 +22,10 @@
       $(document).ready( () => {
         $("#newName").submit( (event) => {
           event.preventDefault();
-          catCount = addCat(event.target.name.value, catCount, catBack);
+          addCat(event.target.name.value, catBack);
         });
 
-        let catCount = getCats(catBack);
+        getCats(catBack);
       });
 
     </script>

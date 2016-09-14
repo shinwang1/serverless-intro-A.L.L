@@ -19,7 +19,7 @@ getCats = (catBack) => {
   .then(
     (data) => {
       console.log('getCats worked')
-      return catBack(data)
+      catBack(data)
     }
   )
   .catch(
