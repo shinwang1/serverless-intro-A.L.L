@@ -1,5 +1,5 @@
 
-addCat = (catName, catCount, catBack) => {
+addCat = (catName, catBack) => {
   fetch('https://po4m3psh3d.execute-api.us-east-1.amazonaws.com/prod/CatDBManager', {
     method: "POST",
     mode: 'cors',
@@ -9,7 +9,6 @@ addCat = (catName, catCount, catBack) => {
         "tableName": "CatTable",
         "payload": {
             "Item": {
-                "Id": `${ catCount + 1 }`,
                 "name": `${ catName }`
             }
         }
@@ -25,7 +24,7 @@ addCat = (catName, catCount, catBack) => {
     (data) => {
       console.log('addCat worked')
       $( "#cats" ).empty();
-      return getCats(catBack)
+      getCats(catBack)
     }
   )
   .catch(
